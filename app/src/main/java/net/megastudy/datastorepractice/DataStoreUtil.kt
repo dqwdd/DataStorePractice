@@ -2,6 +2,8 @@ package net.megastudy.datastorepractice
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.Serializer
+import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -11,10 +13,8 @@ import kotlinx.coroutines.flow.map
 class DataStoreUtil(val context: Context) {
 
 
-    val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-
-
     companion object {
+        val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
         val Id = stringPreferencesKey("id")
     }
 
@@ -28,4 +28,6 @@ class DataStoreUtil(val context: Context) {
         // No type safety.
         preferences[Id] ?: ""
     }
+
+
 }

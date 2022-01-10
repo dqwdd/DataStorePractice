@@ -27,13 +27,16 @@ class MainActivity : AppCompatActivity() {
         dataStore = DataStoreUtil(this)
 
         binding.btSave.setOnClickListener {
+
             CoroutineScope(IO).launch {
                 dataStore.SaveId(
                     binding.editId.text.toString().trim()
                 )
             }
+
         }
 
+        //이거 변수 하나당 한 개씩 해야 함
         lifecycle.coroutineScope.launchWhenCreated {
             dataStore.getId().collect {
                 binding.tvGetId.text = it
@@ -42,4 +45,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }//onCreate
+
+
 }
